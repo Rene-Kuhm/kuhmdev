@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { FaCalendar, FaTag, FaArrowRight, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 interface Post {
   id: number;
@@ -67,7 +66,6 @@ export default function BlogPage() {
             </div>
           </div>
         </main>
-        <Footer />
       </>
     );
   }
@@ -75,20 +73,19 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-black min-h-screen">
+      <main className="bg-black min-h-screen relative">
+        {/* Background Grid */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
+              linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+            mask: 'radial-gradient(circle at center, black 60%, transparent 100%)'
+          }}
+        />
         {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
-          {/* Background Grid */}
-          <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
-                linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
-              backgroundSize: '50px 50px',
-              mask: 'radial-gradient(circle at center, black 40%, transparent 100%)'
-            }}
-          />
-
+        <section className="py-20 relative">
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -216,7 +213,6 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

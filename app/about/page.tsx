@@ -13,9 +13,9 @@ export default function AboutPage() {
   ];
 
   const socialLinks = [
-    { icon: FaGithub, url: 'https://github.com/yourusername' },
-    { icon: FaTwitter, url: 'https://twitter.com/yourusername' },
-    { icon: FaLinkedin, url: 'https://linkedin.com/in/yourusername' },
+    { icon: FaGithub, url: 'https://github.com/Rene-Kuhm' },
+    { icon: FaTwitter, url: 'https://x.com/REPARO22' },
+    { icon: FaLinkedin, url: 'https://linkedin.com/in/ren%C3%A9-kuhm-1aa88818a' },
   ];
 
   const education = [

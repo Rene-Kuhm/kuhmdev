@@ -42,8 +42,8 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'GitHub', href: 'https://github.com/Rene-Kuhm', icon: FaGithub },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/rene-kuhm', icon: FaLinkedin },
-    { name: 'Twitter', href: 'https://twitter.com/rene_kuhm', icon: FaTwitter }
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ren%C3%A9-kuhm-1aa88818a/', icon: FaLinkedin },
+    { name: 'Twitter', href: 'https://x.com/REPARO22', icon: FaTwitter }
   ];
 
   return (

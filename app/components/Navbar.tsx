@@ -52,9 +52,11 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <button className="bg-[#00FF7F] text-black px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-                Get Started
-              </button>
+              <Link href="/contact">
+                <button className="bg-[#00FF7F] text-black px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                Empezamos
+                </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -94,9 +96,11 @@ const Navbar = () => {
                     {item.label}
                   </Link>
                 ))}
-                <button className="w-full bg-[#00FF7F] text-black px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all mt-4">
-                  Get Started
-                </button>
+                <Link href="/contact">
+                  <button className="w-full bg-[#00FF7F] text-black px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all mt-4">
+                    Get Started
+                  </button>
+                </Link>
               </div>
             </div>
           )}

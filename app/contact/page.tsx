@@ -71,13 +71,13 @@ export default function ContactPage() {
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
-      url: 'https://www.linkedin.com/in/rene-kuhm/',
+      url: 'https://www.linkedin.com/in/ren%C3%A9-kuhm-1aa88818a/',
       color: 'hover:text-blue-500'
     },
     {
       name: 'Twitter',
       icon: FaTwitter,
-      url: 'https://twitter.com/KuhmRene',
+      url: 'https://x.com/REPARO22',
       color: 'hover:text-blue-400'
     }
   ];
