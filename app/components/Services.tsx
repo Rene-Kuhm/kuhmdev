@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaReact, FaMobile, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
+import { FaCode, FaReact, FaMobile, FaDatabase, FaCloud, FaRobot, FaPaintBrush, FaServer } from 'react-icons/fa';
 
 const CodeBackground = ({ language }: { language: string }) => {
   const [text, setText] = useState('');
@@ -79,25 +79,40 @@ const Services = () => {
 
   const services = [
     {
-      title: 'Web Development',
-      description: 'Modern and responsive web applications using React, Next.js, and other cutting-edge technologies.',
-      icon: FaReact,
-      language: 'javascript',
-      features: ['React/Next.js', 'Responsive Design', 'Performance Optimization'],
-    },
-    {
-      title: 'Backend Development',
-      description: 'Robust and scalable server solutions with Node.js, Python, and Java.',
+      title: 'Desarrollo Web Full Stack',
+      description: 'Creo aplicaciones web modernas y escalables utilizando las últimas tecnologías como React, Next.js, Node.js y TypeScript.',
       icon: FaCode,
-      language: 'python',
-      features: ['API Development', 'Database Design', 'Security'],
+      language: 'javascript',
+      features: [
+        'Aplicaciones web responsivas',
+        'APIs RESTful y GraphQL',
+        'Bases de datos SQL y NoSQL',
+        'Integración de servicios en la nube'
+      ]
     },
     {
-      title: 'Mobile Development',
-      description: 'Cross-platform mobile applications that work seamlessly on iOS and Android.',
-      icon: FaMobile,
+      title: 'Desarrollo Frontend',
+      description: 'Diseño y desarrollo interfaces de usuario intuitivas y atractivas con un enfoque en la experiencia del usuario.',
+      icon: FaPaintBrush,
       language: 'javascript',
-      features: ['React Native', 'Native APIs', 'App Store Deploy'],
+      features: [
+        'Diseño UI/UX moderno',
+        'Animaciones fluidas',
+        'Optimización de rendimiento',
+        'Accesibilidad web'
+      ]
+    },
+    {
+      title: 'Desarrollo Backend',
+      description: 'Implemento arquitecturas robustas y seguras para potenciar tus aplicaciones con un rendimiento óptimo.',
+      icon: FaServer,
+      language: 'python',
+      features: [
+        'Arquitectura de microservicios',
+        'Seguridad y autenticación',
+        'Optimización de bases de datos',
+        'Escalabilidad y mantenimiento'
+      ]
     },
     {
       title: 'Database Solutions',
@@ -163,12 +178,22 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">
-            Our <span className="text-[#00FF7F]">Services</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Delivering cutting-edge solutions with modern technologies and best practices
-          </p>
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold mb-6 text-[#00FF7F]"
+          >
+            Servicios
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-gray-300 text-lg max-w-2xl mx-auto text-center"
+          >
+            Ofrezco soluciones tecnológicas completas para ayudarte a alcanzar tus objetivos
+          </motion.p>
         </motion.div>
 
         <motion.div

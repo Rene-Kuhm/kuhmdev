@@ -29,10 +29,34 @@ const Stats = () => {
   }, []);
 
   const stats = [
-    { number: 85, label: 'Projects', suffix: '+' },
-    { number: 95, label: 'Clients', suffix: '%' },
-    { number: 25, label: 'Experience', suffix: 'y' },
-    { number: 98, label: 'Success Rate', suffix: '%' },
+    {
+      id: 1,
+      number: 50,
+      suffix: '+',
+      title: 'Proyectos Completados',
+      description: 'Soluciones exitosas entregadas a clientes satisfechos'
+    },
+    {
+      id: 2,
+      number: 5,
+      suffix: '+',
+      title: 'Años de Experiencia',
+      description: 'Desarrollando software de alta calidad'
+    },
+    {
+      id: 3,
+      number: 20,
+      suffix: '+',
+      title: 'Tecnologías Dominadas',
+      description: 'Herramientas y frameworks modernos'
+    },
+    {
+      id: 4,
+      number: 100,
+      suffix: '%',
+      title: 'Satisfacción del Cliente',
+      description: 'Comprometido con la excelencia'
+    }
   ];
 
   const containerVariants = {
@@ -85,7 +109,7 @@ const Stats = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div
-              key={index}
+              key={stat.id}
               variants={itemVariants}
               className="relative group"
             >
@@ -119,7 +143,7 @@ const Stats = () => {
                     animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: index * 0.1 + 0.2 }}
                   >
-                    {stat.label}
+                    {stat.title}
                   </motion.p>
 
                   {/* Decorative Elements */}

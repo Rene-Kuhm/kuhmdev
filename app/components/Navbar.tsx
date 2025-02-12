@@ -8,13 +8,27 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Blog', href: '#blog' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Inicio', href: '/' },
+    { label: 'Sobre Mí', href: '/about' },
+    { label: 'Servicios', href: '/services' },
+    { label: 'Portafolio', href: '/portfolio' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contacto', href: '/contact' },
   ];
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/')) {
+      // Let Next.js handle regular navigation
+      return;
+    }
+    
+    e.preventDefault();
+    const element = document.getElementById(href.replace('#', ''));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -33,6 +47,7 @@ const Navbar = () => {
                   key={item.label}
                   href={item.href}
                   className="text-white hover:text-[#00FF7F] transition-colors"
+                  onClick={(e) => handleClick(e, item.href)}
                 >
                   {item.label}
                 </Link>
@@ -74,7 +89,7 @@ const Navbar = () => {
                     key={item.label}
                     href={item.href}
                     className="block text-white hover:text-[#00FF7F] transition-colors"
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleClick(e, item.href)}
                   >
                     {item.label}
                   </Link>

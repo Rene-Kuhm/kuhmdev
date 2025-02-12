@@ -28,13 +28,13 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-white max-w-xl">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-[#00FF7F]">IMAGINATION</span> IS MORE<br />
-              IMPORTANT THAN<br />
-              KNOWLEDGE
+              <span className="text-[#00FF7F]">LA IMAGINACIÓN</span> ES MÁS<br />
+              IMPORTANTE QUE<br />
+              EL CONOCIMIENTO
             </h1>
             <p className="text-gray-300 mb-8 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <button className="bg-[#00FF7F] text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-              Get Started
+              Comenzar
             </button>
           </div>
           <div className="relative md:flex justify-end">

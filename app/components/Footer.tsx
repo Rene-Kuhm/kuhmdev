@@ -10,32 +10,40 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const footerLinks = {
-    services: [
-      { name: 'Web Development', href: '#' },
-      { name: 'Mobile Apps', href: '#' },
-      { name: 'Cloud Solutions', href: '#' },
-      { name: 'AI & Machine Learning', href: '#' },
-    ],
-    company: [
-      { name: 'About Us', href: '#' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'Portfolio', href: '#' },
-      { name: 'Contact', href: '#' },
-    ],
-    resources: [
-      { name: 'Documentation', href: '#' },
-      { name: 'Tutorials', href: '#' },
-      { name: 'Case Studies', href: '#' },
-      { name: 'Open Source', href: '#' },
-    ],
-  };
+  const footerLinks = [
+    {
+      title: 'Enlaces',
+      links: [
+        { name: 'Inicio', href: '/' },
+        { name: 'Sobre Mí', href: '/about' },
+        { name: 'Servicios', href: '/services' },
+        { name: 'Portafolio', href: '/portfolio' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'Contacto', href: '/contact' }
+      ]
+    },
+    {
+      title: 'Servicios',
+      links: [
+        { name: 'Desarrollo Web', href: '/services#web' },
+        { name: 'Desarrollo Frontend', href: '/services#frontend' },
+        { name: 'Desarrollo Backend', href: '/services#backend' },
+        { name: 'Consultoría', href: '/services#consulting' }
+      ]
+    },
+    {
+      title: 'Legal',
+      links: [
+        { name: 'Política de Privacidad', href: '/privacy' },
+        { name: 'Términos de Servicio', href: '/terms' }
+      ]
+    }
+  ];
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/Rene-Kuhm', label: 'GitHub' },
-    { icon: FaTwitter, href: '#', label: 'Twitter' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
-    { icon: FaEnvelope, href: 'mailto:contact@example.com', label: 'Email' },
+    { name: 'GitHub', href: 'https://github.com/Rene-Kuhm', icon: FaGithub },
+    { name: 'LinkedIn', href: 'https://linkedin.com/in/rene-kuhm', icon: FaLinkedin },
+    { name: 'Twitter', href: 'https://twitter.com/rene_kuhm', icon: FaTwitter }
   ];
 
   return (
@@ -73,7 +81,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="p-2 text-gray-400 hover:text-[#00FF7F] transition-colors"
                     whileHover={{ scale: 1.2 }}
-                    aria-label={social.label}
+                    aria-label={social.name}
                   >
                     <social.icon size={20} />
                   </motion.a>
@@ -82,22 +90,22 @@ const Footer = () => {
             </div>
 
             {/* Links Columns */}
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title}>
+            {footerLinks.map((link, index) => (
+              <div key={index}>
                 <h3 className="text-white font-semibold uppercase mb-6">
-                  {title}
+                  {link.title}
                 </h3>
                 <ul className="space-y-4">
-                  {links.map((link, index) => (
+                  {link.links.map((item, index) => (
                     <li key={index}>
                       <Link
-                        href={link.href}
+                        href={item.href}
                         className="text-gray-400 hover:text-[#00FF7F] transition-colors inline-flex items-center group"
                       >
                         <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           →
                         </span>
-                        {link.name}
+                        {item.name}
                       </Link>
                     </li>
                   ))}
@@ -110,18 +118,15 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-[#00FF7F]/10 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              {new Date().getFullYear()} kuhmdev. All rights reserved.
-            </p>
+            <div className="text-center text-gray-400 mt-8">
+              <p> René Kuhm. Todos los derechos reservados.</p>
+            </div>
             <div className="flex space-x-6 text-sm">
               <Link href="#" className="text-gray-400 hover:text-[#00FF7F] transition-colors">
-                Privacy Policy
+                Política de Privacidad
               </Link>
               <Link href="#" className="text-gray-400 hover:text-[#00FF7F] transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-[#00FF7F] transition-colors">
-                Cookie Policy
+                Términos de Servicio
               </Link>
             </div>
           </div>

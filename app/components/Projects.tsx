@@ -121,10 +121,10 @@ const Portfolio = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold mb-4">
-            Latest <span className="text-[#00FF7F]">Projects</span>
+            Ultimos <span className="text-[#00FF7F]">Projectos</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore our recent work and innovative solutions
+          Explore nuestro trabajo reciente y soluciones innovadoras
           </p>
         </motion.div>
 
