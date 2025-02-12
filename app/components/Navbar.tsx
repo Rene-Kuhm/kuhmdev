@@ -12,7 +12,6 @@ const Navbar = () => {
     { label: 'Sobre Mí', href: '/about' },
     { label: 'Servicios', href: '/services' },
     { label: 'Portafolio', href: '/portfolio' },
-    { label: 'Blog', href: '/blog' },
     { label: 'Contacto', href: '/contact' },
   ];
 

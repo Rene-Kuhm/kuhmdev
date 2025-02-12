@@ -18,7 +18,6 @@ const Footer = () => {
         { name: 'Sobre Mí', href: '/about' },
         { name: 'Servicios', href: '/services' },
         { name: 'Portafolio', href: '/portfolio' },
-        { name: 'Blog', href: '/blog' },
         { name: 'Contacto', href: '/contact' }
       ]
     },
@@ -41,9 +40,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'GitHub', href: 'https://github.com/Rene-Kuhm', icon: FaGithub },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ren%C3%A9-kuhm-1aa88818a/', icon: FaLinkedin },
-    { name: 'Twitter', href: 'https://x.com/REPARO22', icon: FaTwitter }
+    { name: 'GitHub', href: 'https://github.com/renekuhm', icon: FaGithub },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/renekuhm', icon: FaLinkedin },
+    { name: 'X', href: 'https://x.com/renekuhm', icon: FaTwitter }
   ];
 
   return (

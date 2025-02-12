@@ -18,15 +18,6 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Blog TDP',
-    description: 'Blog personal con sistema de gestión de contenidos y panel de administración',
-    image: '/projects/blog.png',
-    category: ['Web'],
-    technologies: ['Astro', 'Typescript', 'Javascript', 'Node.js'],
-    github: 'https://github.com/Rene-Kuhm/TDPBlog',
-  },
-  {
-    id: 2,
     title: 'Systema Reclamos',
     description: 'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios. Utiliza tecnologías de vanguardia para proporcionar una experiencia fluida y eficiente en el manejo de reclamos y la comunicación con los clientes.',
     image: '/projects/Systema-reclamos.png',
@@ -35,7 +26,7 @@ const projects: Project[] = [
     github: 'https://github.com/Rene-Kuhm/prueba-systema',
   },
   {
-    id: 3,
+    id: 2,
     title: 'WEB TDP',
     description: '🔥Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
     image: '/projects/TDP.png',
