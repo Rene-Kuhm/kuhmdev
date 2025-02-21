@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio Website
 
-## Getting Started
+A modern, responsive personal portfolio website built with Next.js, React, TypeScript and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
 
+- Modern and responsive design with Framer Motion animations
+- Blog section with MDX support
+- Portfolio showcase with project filtering
+- Contact form with email integration
+- SEO optimized
+- Dark mode support
+- Server-side rendering with Next.js
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Professional animations and transitions
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework:** Next.js 15.1.6
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** React Icons
+- **Blog:** MDX with rehype plugins
+- **Performance:**
+  - Server-side rendering
+  - Image optimization
+  - Code splitting
+  - Bundle optimization with Rspack
+
+## 📦 Project Structure
+
+```
+app/
+├── about/            # About page
+├── api/             # API routes
+├── blog/            # Blog pages
+├── components/      # Reusable components
+├── contact/         # Contact page
+├── portfolio/       # Portfolio page
+├── services/        # Services page
+└── layout.tsx       # Root layout
+```
+
+## 🧩 Components
+
+- `BlogPost` - Blog post component with MDX support
+- `Contact` - Contact form with email integration
+- `Hero` - Hero section with animations
+- `Navbar` - Navigation bar with responsive design
+- `Portfolio` - Portfolio section with project filtering
+- `Projects` - Projects showcase component
+- `Services` - Services section
+- `Stats` - Statistics display component
+
+## 🚀 Getting Started
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone [repository-url]
+```
+
+2. Install dependencies:
+```bash
+bun install
+```
+
+3. Run the development server:
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Build for production:
+```bash
+bun build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Start production server:
+```bash
+bun start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧰 Development Tools
 
-## Learn More
+- **Linting:** Biome & ESLint
+- **Formatting:** Biome
+- **Build Tool:** Rspack
+- **Package Manager:** Bun
+- **Git Hooks:** Pre-commit hooks for linting and formatting
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `dev` - Start development server
+- `build` - Build for production
+- `start` - Start production server
+- `lint` - Run Biome linter
+- `lint:eslint` - Run ESLint
+- `lint:all` - Run all linters
+- `format` - Format code with Biome
+- `check` - Run Biome checks
+- `check:all` - Run all checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Configuration Files
 
-## Deploy on Vercel
+- `next.config.ts` - Next.js configuration
+- `rspack.config.js` - Rspack bundler configuration
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `tsconfig.json` - TypeScript configuration
+- `eslint.config.mjs` - ESLint configuration
+- `biome.json` - Biome configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📬 Contact Form Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The contact form is integrated with multiple email service providers:
+- SendGrid
+- Mailchimp Transactional
+- Nodemailer
+
+## 🎨 Styling and Design
+
+- Fully responsive design
+- Custom animations with Framer Motion
+- Tailwind CSS for utility-first styling
+- Custom color schemes and typography
+- Modern and clean UI/UX
+
+## 📱 Performance Optimizations
+
+- Server-side rendering for better SEO
+- Image optimization with Next.js Image component
+- Code splitting and lazy loading
+- Bundle optimization with Rspack
+- Efficient styling with Tailwind CSS
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is private and all rights are reserved.

@@ -1,7 +1,20 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    webpackBuildWorker: true,
+    serverComponentsExternalPackages: [],
+  },
+  transpilePackages: ['@rspack/core'],
+  webpack: (config, { dev, isServer }) => {
+    if (process.env.USE_RSPACK) {
+      return {
+        ...config,
+        ...require('./rspack.config.js'),
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

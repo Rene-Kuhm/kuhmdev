@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 interface Project {
   id: number;
@@ -19,7 +20,8 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'Systema Reclamos',
-    description: 'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios. Utiliza tecnologías de vanguardia para proporcionar una experiencia fluida y eficiente en el manejo de reclamos y la comunicación con los clientes.',
+    description:
+      'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios. Utiliza tecnologías de vanguardia para proporcionar una experiencia fluida y eficiente en el manejo de reclamos y la comunicación con los clientes.',
     image: '/projects/Systema-reclamos.png',
     category: ['Web'],
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
@@ -28,7 +30,8 @@ const projects: Project[] = [
   {
     id: 2,
     title: 'WEB TDP',
-    description: '🔥Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
+    description:
+      '🔥Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
     image: '/projects/TDP.png',
     category: ['Web'],
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
@@ -41,7 +44,10 @@ const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
-  const categories = ['All', ...new Set(projects.flatMap(project => project.category))];
+  const categories = [
+    'All',
+    ...new Set(projects.flatMap((project) => project.category)),
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,7 +72,9 @@ const Portfolio = () => {
     setFilteredProjects(
       selectedCategory === 'All'
         ? projects
-        : projects.filter(project => project.category.includes(selectedCategory))
+        : projects.filter((project) =>
+            project.category.includes(selectedCategory)
+          )
     );
   }, [selectedCategory]);
 
@@ -74,8 +82,8 @@ const Portfolio = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
@@ -84,23 +92,26 @@ const Portfolio = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   return (
-    <section id="portfolio-section" className="bg-black py-20 relative overflow-hidden">
+    <section
+      id="portfolio-section"
+      className="bg-black py-20 relative overflow-hidden"
+    >
       {/* Background Grid */}
-      <div 
+      <div
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
             linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
           backgroundSize: '50px 50px',
-          mask: 'radial-gradient(circle at center, black 40%, transparent 100%)'
+          mask: 'radial-gradient(circle at center, black 40%, transparent 100%)',
         }}
       />
 
@@ -115,7 +126,7 @@ const Portfolio = () => {
             Ultimos <span className="text-[#00FF7F]">Projectos</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-          Explore nuestro trabajo reciente y soluciones innovadoras
+            Explore nuestro trabajo reciente y soluciones innovadoras
           </p>
         </motion.div>
 
@@ -128,6 +139,7 @@ const Portfolio = () => {
         >
           {categories.map((category) => (
             <button
+              type="button"
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 rounded-full border-2 transition-all duration-300 ${
@@ -142,7 +154,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <AnimatePresence mode='wait'>
+        <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
             variants={containerVariants}
@@ -160,9 +172,10 @@ const Portfolio = () => {
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
                     {/* Fallback for development */}
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
+                      fill
                       className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
                     />
                     {/* Overlay */}
@@ -195,14 +208,12 @@ const Portfolio = () => {
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00FF7F] transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 mb-4">
-                      {project.description}
-                    </p>
+                    <p className="text-gray-400 mb-4">{project.description}</p>
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, index) => (
+                      {project.technologies.map((tech) => (
                         <span
-                          key={index}
+                          key={`${project.title}-${tech}`}
                           className="px-3 py-1 text-sm bg-[#00FF7F]/10 text-[#00FF7F] rounded-full"
                         >
                           {tech}

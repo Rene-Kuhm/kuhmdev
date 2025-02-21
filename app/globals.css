@@ -3,23 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #00FF7F;
-}
-
-body {
-  background-color: black;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  --primary-color: #00ff7f;
+  --secondary-color: #ff69b4;
+  --background-color: #f8fafc;
+  --text-color: #333;
 }
 
 @layer base {
   body {
-    @apply antialiased;
+    @apply antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
   }
 }
 
 @layer components {
   .container {
     @apply max-w-7xl mx-auto px-4;
+  }
+
+  .prose-custom {
+    @apply prose prose-lg md:prose-xl dark:prose-invert
+    prose-headings:text-gray-900 dark:prose-headings:text-white
+    prose-p:text-gray-700 dark:prose-p:text-gray-300
+    prose-a:text-primary-color hover:prose-a:text-primary-color/80
+    prose-strong:text-gray-900 dark:prose-strong:text-white
+    prose-code:text-primary-color dark:prose-code:text-primary-color/90
+    prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800;
+  }
+
+  .blog-card {
+    @apply relative overflow-hidden bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl
+    transition-all duration-300 ease-out;
+  }
+
+  .blog-card:hover {
+    @apply transform -translate-y-1;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-secondary-color;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200
+    hover:text-primary-color dark:hover:text-primary-color transition-colors duration-200;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
+    text-white bg-primary-color hover:bg-primary-color/90 transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in {
+    @apply animate-[fadeIn_0.5s_ease-in-out];
+  }
+
+  .slide-up {
+    @apply animate-[slideUp_0.5s_ease-out];
   }
 }

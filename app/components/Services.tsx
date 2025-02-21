@@ -1,12 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaReact, FaMobile, FaDatabase, FaCloud, FaRobot, FaPaintBrush, FaServer } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import {
+  FaCloud,
+  FaCode,
+  FaDatabase,
+  FaPaintBrush,
+  FaRobot,
+  FaServer,
+} from 'react-icons/fa';
 
 const CodeBackground = ({ language }: { language: string }) => {
   const [text, setText] = useState('');
-  
+
   useEffect(() => {
     const codeSnippets = {
       javascript: `function develop() {
@@ -26,7 +33,9 @@ const CodeBackground = ({ language }: { language: string }) => {
     };
 
     let currentText = '';
-    const snippet = codeSnippets[language as keyof typeof codeSnippets] || codeSnippets.javascript;
+    const snippet =
+      codeSnippets[language as keyof typeof codeSnippets] ||
+      codeSnippets.javascript;
     let currentIndex = 0;
 
     const interval = setInterval(() => {
@@ -44,7 +53,7 @@ const CodeBackground = ({ language }: { language: string }) => {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [language, text]);
+  }, [language]);
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -80,57 +89,63 @@ const Services = () => {
   const services = [
     {
       title: 'Desarrollo Web Full Stack',
-      description: 'Creo aplicaciones web modernas y escalables utilizando las últimas tecnologías como React, Next.js, Node.js y TypeScript.',
+      description:
+        'Creo aplicaciones web modernas y escalables utilizando las últimas tecnologías como React, Next.js, Node.js y TypeScript.',
       icon: FaCode,
       language: 'javascript',
       features: [
         'Aplicaciones web responsivas',
         'APIs RESTful y GraphQL',
         'Bases de datos SQL y NoSQL',
-        'Integración de servicios en la nube'
-      ]
+        'Integración de servicios en la nube',
+      ],
     },
     {
       title: 'Desarrollo Frontend',
-      description: 'Diseño y desarrollo interfaces de usuario intuitivas y atractivas con un enfoque en la experiencia del usuario.',
+      description:
+        'Diseño y desarrollo interfaces de usuario intuitivas y atractivas con un enfoque en la experiencia del usuario.',
       icon: FaPaintBrush,
       language: 'javascript',
       features: [
         'Diseño UI/UX moderno',
         'Animaciones fluidas',
         'Optimización de rendimiento',
-        'Accesibilidad web'
-      ]
+        'Accesibilidad web',
+      ],
     },
     {
       title: 'Desarrollo Backend',
-      description: 'Implemento arquitecturas robustas y seguras para potenciar tus aplicaciones con un rendimiento óptimo.',
+      description:
+        'Implemento arquitecturas robustas y seguras para potenciar tus aplicaciones con un rendimiento óptimo.',
       icon: FaServer,
       language: 'python',
       features: [
         'Arquitectura de microservicios',
         'Seguridad y autenticación',
         'Optimización de bases de datos',
-        'Escalabilidad y mantenimiento'
-      ]
+        'Escalabilidad y mantenimiento',
+      ],
     },
     {
       title: 'Database Solutions',
-      description: 'Efficient database design and implementation for optimal data management.',
+      description:
+        'Efficient database design and implementation for optimal data management.',
       icon: FaDatabase,
       language: 'python',
       features: ['SQL/NoSQL', 'Data Modeling', 'Optimization'],
     },
     {
       title: 'Cloud Services',
-      description: 'Cloud infrastructure setup and management with AWS, Azure, or GCP.',
+      description:
+        'Cloud infrastructure setup and management with AWS, Azure, or GCP.',
       icon: FaCloud,
       language: 'javascript',
       features: ['AWS/Azure/GCP', 'Serverless', 'DevOps'],
     },
     {
       title: 'AI & Machine Learning',
-      description: 'Intelligent solutions using cutting-edge AI and ML technologies.',
+      description:
+        'Intelligent solutions using cutting-edge AI and ML technologies.',
       icon: FaRobot,
       language: 'python',
       features: ['Neural Networks', 'Data Analysis', 'Automation'],
@@ -141,8 +156,8 @@ const Services = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+      transition: { staggerChildren: 0.2 },
+    },
   };
 
   const itemVariants = {
@@ -151,23 +166,26 @@ const Services = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   return (
-    <section id="services-section" className="bg-black py-20 relative overflow-hidden">
+    <section
+      id="services-section"
+      className="bg-black py-20 relative overflow-hidden"
+    >
       {/* Background Grid */}
-      <div 
+      <div
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
             linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
           backgroundSize: '50px 50px',
-          mask: 'radial-gradient(circle at center, black 40%, transparent 100%)'
+          mask: 'radial-gradient(circle at center, black 40%, transparent 100%)',
         }}
       />
 
@@ -192,19 +210,20 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-gray-300 text-lg max-w-2xl mx-auto text-center"
           >
-            Ofrezco soluciones tecnológicas completas para ayudarte a alcanzar tus objetivos
+            Ofrezco soluciones tecnológicas completas para ayudarte a alcanzar
+            tus objetivos
           </motion.p>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
+          animate={isVisible ? 'visible' : 'hidden'}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div
-              key={index}
+              key={service.title}
               variants={itemVariants}
               className="relative group"
             >
@@ -220,12 +239,13 @@ const Services = () => {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF7F] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 mb-4">
-                    {service.description}
-                  </p>
+                  <p className="text-gray-400 mb-4">{service.description}</p>
                   <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="text-gray-400 flex items-center">
+                    {service.features.map((feature) => (
+                      <li
+                        key={`${service.title}-${feature}`}
+                        className="text-gray-400 flex items-center"
+                      >
                         <span className="text-[#00FF7F] mr-2">•</span>
                         {feature}
                       </li>

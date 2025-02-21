@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://renekuhm.dev</loc>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://renekuhm.dev/about</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://renekuhm.dev/services</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://renekuhm.dev/portfolio</loc>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://renekuhm.dev/contact</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    <url>
+        <loc>https://renekuhm.dev</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="es-CL" href="https://renekuhm.dev"/>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://renekuhm.dev/en"/>
+        <image:image>
+            <image:loc>https://renekuhm.dev/images/profile.jpg</image:loc>
+            <image:caption>René Kuhm - Desarrollador Web Full Stack</image:caption>
+            <image:title>René Kuhm Portfolio</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://renekuhm.dev/services</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://renekuhm.dev/images/services-hero.jpg</image:loc>
+            <image:caption>Servicios de Desarrollo Web</image:caption>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://renekuhm.dev/portfolio</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://renekuhm.dev/images/portfolio-hero.jpg</image:loc>
+            <image:caption>Proyectos de Desarrollo Web</image:caption>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://renekuhm.dev/contact</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://renekuhm.dev/privacy</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://renekuhm.dev/terms</loc>
+        <lastmod>2024-02-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
 </urlset>

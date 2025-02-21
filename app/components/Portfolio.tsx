@@ -1,21 +1,32 @@
 import Image from 'next/image';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 const Portfolio = () => {
   const projects = [
     {
-      title: 'Proyecto 1',
-      category: 'Diseño Web',
-      image: '/portfolio1.jpg',
+      title: 'Systema Reclamos',
+      category: 'Web Development',
+      description:
+        'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios.',
+      image: '/projects/Systema-reclamos.png',
+      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
+      github: 'https://github.com/Rene-Kuhm/prueba-systema',
     },
     {
-      title: 'Proyecto 2',
-      category: 'Desarrollo',
-      image: '/portfolio2.jpg',
+      title: 'WEB TDP',
+      category: 'Web Development',
+      description:
+        'Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
+      image: '/projects/TDP.png',
+      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
+      github: 'https://github.com/Rene-Kuhm/nextjs',
     },
     {
-      title: 'Proyecto 3',
-      category: 'Marketing',
+      title: 'Próximo Proyecto',
+      category: 'En Desarrollo',
+      description: 'Nuevas ideas y soluciones innovadoras en camino.',
       image: '/portfolio3.jpg',
+      technologies: ['Coming Soon'],
     },
   ];
 
@@ -27,32 +38,55 @@ const Portfolio = () => {
             Últimos <span className="text-[#00FF7F]">Proyectos</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explora algunos de nuestros proyectos más destacados que muestran nuestra experiencia y creatividad
+            Explora algunos de nuestros proyectos más destacados que muestran
+            nuestra experiencia y creatividad
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <div
-              key={index}
-              className="group relative overflow-hidden rounded-lg"
+              key={project.title}
+              className="group relative overflow-hidden rounded-lg bg-zinc-900/50 backdrop-blur-sm border border-zinc-800"
             >
-              <div className="relative h-64 w-full">
+              <div className="relative h-48 w-full">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-[#00FF7F]">{project.category}</p>
-                    <button className="mt-4 px-6 py-2 border border-[#00FF7F] text-[#00FF7F] rounded-full hover:bg-[#00FF7F] hover:text-black transition-all">
-                      Ver Proyecto
-                    </button>
-                  </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-[#00FF7F] mb-2">{project.category}</p>
+                <p className="text-gray-400 mb-4 text-sm">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-sm bg-zinc-800 text-[#00FF7F] rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
+                {project.github && (
+                  <div className="flex gap-4">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-[#00FF7F] transition-colors"
+                    >
+                      <FaGithub size={24} />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}

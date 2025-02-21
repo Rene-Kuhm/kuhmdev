@@ -1,12 +1,35 @@
+# Robots.txt for https://renekuhm.dev
+
+# Global Crawl Configuration
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
 
-Sitemap: https://renekuhm.dev/sitemap.xml
-
-# Crawl-delay to prevent overwhelming the server
+# Crawl-delay to prevent server overload
 Crawl-delay: 10
 
-# Directories to disallow
-Disallow: /api/
+# Sitemap location
+Sitemap: https://renekuhm.dev/sitemap.xml
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# Performance and resource-intensive paths
 Disallow: /_next/
 Disallow: /public/
+
+# Additional SEO and performance paths
+Disallow: /404
+Disallow: /500
+
+# Specific file types to exclude
+Disallow: /*.json$
+Disallow: /*.xml$

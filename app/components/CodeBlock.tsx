@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaCopy } from 'react-icons/fa';
 import { useState } from 'react';
+import { FaCopy } from 'react-icons/fa';
 
 interface CodeBlockProps {
   children: string;
@@ -10,7 +10,11 @@ interface CodeBlockProps {
   language?: string;
 }
 
-export default function CodeBlock({ children, className, language }: CodeBlockProps) {
+export default function CodeBlock({
+  children,
+  className,
+  language,
+}: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
@@ -20,8 +24,12 @@ export default function CodeBlock({ children, className, language }: CodeBlockPr
   };
 
   // Extract language from className (e.g., "language-javascript" -> "JavaScript")
-  const displayLanguage = language || 
-    className?.replace('language-', '')?.split(' ')[0]?.replace(/^\w/, c => c.toUpperCase()) ||
+  const displayLanguage =
+    language ||
+    className
+      ?.replace('language-', '')
+      ?.split(' ')[0]
+      ?.replace(/^\w/, (c) => c.toUpperCase()) ||
     'Code';
 
   return (
@@ -35,6 +43,7 @@ export default function CodeBlock({ children, className, language }: CodeBlockPr
           {displayLanguage}
         </span>
         <button
+          type="button"
           onClick={copyToClipboard}
           className="text-gray-400 hover:text-[#00FF7F] transition-colors"
           title="Copy code"
@@ -55,9 +64,7 @@ export default function CodeBlock({ children, className, language }: CodeBlockPr
 
       <div className="p-4 overflow-x-auto">
         <pre className="m-0">
-          <code className={className}>
-            {children}
-          </code>
+          <code className={className}>{children}</code>
         </pre>
       </div>
     </motion.div>

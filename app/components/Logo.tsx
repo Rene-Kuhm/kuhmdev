@@ -3,13 +3,16 @@
 const Logo = ({ className = '' }: { className?: string }) => {
   return (
     <svg
-      width="200"
-      height="40"
-      viewBox="0 0 200 40"
+      width="350"
+      height="90"
+      viewBox="0 0 200 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Logo Kuhm"
       className={className}
     >
+      <title>Logo Kuhm</title>
       {/* Glow effect */}
       <defs>
         <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">

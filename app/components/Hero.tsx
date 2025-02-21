@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -6,36 +7,44 @@ const Hero = () => {
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black" />
+
         {/* Grid pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
-              linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            mask: 'radial-gradient(circle at center, transparent 0%, black 100%)'
+            backgroundImage: 'url("/grid.svg")',
+            backgroundSize: '30px',
+            backgroundRepeat: 'repeat',
           }}
-        ></div>
+        />
 
         {/* Glowing orb effect */}
-        <div className="absolute top-20 right-20 w-96 h-96 bg-[#00FF7F]/20 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#00FF7F]/10 rounded-full blur-[100px]"></div>
+        <div className="absolute top-20 right-20 w-96 h-96 bg-[#00FF7F]/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#00FF7F]/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-white max-w-xl">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-[#00FF7F]">LA IMAGINACIÓN</span> ES MÁS<br />
-              IMPORTANTE QUE<br />
+              <span className="text-[#00FF7F]">LA IMAGINACIÓN</span> ES MÁS
+              <br />
+              IMPORTANTE QUE
+              <br />
               EL CONOCIMIENTO
             </h1>
-            <p className="text-gray-300 mb-8 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button className="bg-[#00FF7F] text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-              Comenzar
-            </button>
+            <p className="text-gray-300 mb-8 text-lg">
+              Transformando ideas en soluciones digitales innovadoras. Desarrollo web profesional con enfoque en resultados.
+            </p>
+            <Link href="/contact">
+              <button
+                type="button"
+                className="bg-[#00FF7F] text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+              >
+                Comenzar
+              </button>
+            </Link>
           </div>
           <div className="relative md:flex justify-end">
             <div className="relative w-full aspect-square max-w-[700px] mx-auto md:mx-0">
@@ -47,7 +56,7 @@ const Hero = () => {
                 priority
               />
               {/* Image glow effect */}
-              <div className="absolute inset-0 bg-[#00FF7F]/20 blur-[50px] -z-10 scale-90"></div>
+              <div className="absolute inset-0 bg-[#00FF7F]/20 blur-[50px] -z-10 scale-90" />
             </div>
           </div>
         </div>

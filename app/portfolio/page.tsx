@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
 
 interface Project {
   id: number;
@@ -21,7 +22,8 @@ export default function PortfolioPage() {
     {
       id: 2,
       title: 'Systema Reclamos',
-      description: 'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios. Utiliza tecnologías de vanguardia para proporcionar una experiencia fluida y eficiente en el manejo de reclamos y la comunicación con los clientes.',
+      description:
+        'Este proyecto es una aplicación web moderna para la gestión de reclamos, diseñada para facilitar la interacción entre administradores, técnicos y usuarios. Utiliza tecnologías de vanguardia para proporcionar una experiencia fluida y eficiente en el manejo de reclamos y la comunicación con los clientes.',
       image: '/projects/Systema-reclamos.png',
       category: ['Web'],
       technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
@@ -30,13 +32,14 @@ export default function PortfolioPage() {
         'Gestión de reclamos en tiempo real',
         'Panel de administración',
         'Sistema de notificaciones',
-        'Seguimiento de estados'
-      ]
+        'Seguimiento de estados',
+      ],
     },
     {
       id: 3,
       title: 'WEB TDP',
-      description: 'Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
+      description:
+        'Plataforma dedicada a la creación de experiencias digitales innovadoras y soluciones tecnológicas.',
       image: '/projects/TDP.png',
       category: ['Web'],
       technologies: ['React', 'Next.js', 'Tailwind CSS', 'Typescript'],
@@ -45,9 +48,9 @@ export default function PortfolioPage() {
         'Diseño moderno y atractivo',
         'Animaciones fluidas',
         'Optimización de rendimiento',
-        'Integración con redes sociales'
-      ]
-    }
+        'Integración con redes sociales',
+      ],
+    },
   ];
 
   const containerVariants = {
@@ -55,39 +58,38 @@ export default function PortfolioPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
-      y: 20
+      y: 20,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   return (
     <main className="min-h-screen bg-black pt-20">
       {/* Background Effects */}
       <div className="fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black"></div>
-        <div 
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black" />
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
-              linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            mask: 'radial-gradient(circle at center, transparent 0%, black 100%)'
+            backgroundImage: 'url("/grid.svg")',
+            backgroundSize: '30px',
+            backgroundRepeat: 'repeat',
           }}
-        ></div>
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -103,8 +105,8 @@ export default function PortfolioPage() {
               Portfolio
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Explora algunos de mis proyectos más destacados, donde combino tecnología
-              y diseño para crear soluciones innovadoras.
+              Explora algunos de mis proyectos más destacados, donde combino
+              tecnología y diseño para crear soluciones innovadoras.
             </p>
           </motion.div>
 
@@ -163,9 +165,9 @@ export default function PortfolioPage() {
                   {/* Technologies */}
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, index) => (
+                      {project.technologies.map((tech) => (
                         <span
-                          key={index}
+                          key={`${project.title}-${tech}`}
                           className="px-3 py-1 text-sm bg-[#00FF7F]/10 text-[#00FF7F] rounded-full"
                         >
                           {tech}
@@ -176,12 +178,12 @@ export default function PortfolioPage() {
 
                   {/* Features */}
                   <ul className="space-y-2">
-                    {project.features.map((feature, index) => (
-                      <li 
-                        key={index}
+                    {project.features.map((feature) => (
+                      <li
+                        key={`${project.title}-${feature}`}
                         className="flex items-center text-gray-400 text-sm"
                       >
-                        <span className="w-1.5 h-1.5 bg-[#00FF7F] rounded-full mr-2"></span>
+                        <span className="w-1.5 h-1.5 bg-[#00FF7F] rounded-full mr-2" />
                         {feature}
                       </li>
                     ))}
@@ -205,9 +207,14 @@ export default function PortfolioPage() {
               Estoy siempre interesado en nuevos proyectos y colaboraciones.
               Contáctame para discutir cómo podemos trabajar juntos.
             </p>
-            <button className="bg-[#00FF7F] text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-              Contactar
-            </button>
+            <Link href="/contact">
+              <button
+                type="button"
+                className="bg-[#00FF7F] text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+              >
+                Contactar
+              </button>
+            </Link>
           </motion.div>
         </section>
       </div>

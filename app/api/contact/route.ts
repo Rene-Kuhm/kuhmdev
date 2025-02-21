@@ -7,7 +7,12 @@ export async function POST(req: Request) {
 
     // Validate input
     if (!name || !email || !subject || !message) {
-      console.error('Missing required fields:', { name, email, subject, message });
+      console.error('Missing required fields:', {
+        name,
+        email,
+        subject,
+        message,
+      });
       return NextResponse.json(
         { error: 'Todos los campos son requeridos' },
         { status: 400 }
@@ -21,8 +26,8 @@ export async function POST(req: Request) {
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
+        pass: process.env.SMTP_PASS,
+      },
     });
 
     // Email content
@@ -38,7 +43,7 @@ export async function POST(req: Request) {
         <p><strong>Mensaje:</strong></p>
         <p>${message}</p>
       `,
-      replyTo: email
+      replyTo: email,
     };
 
     console.log('Attempting to send email...');
@@ -53,10 +58,8 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     console.error('Error sending email:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Error al enviar el mensaje';
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    const errorMessage =
+      error instanceof Error ? error.message : 'Error al enviar el mensaje';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

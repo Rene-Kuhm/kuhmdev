@@ -1,26 +1,37 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { useState } from 'react';
+import {
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaTwitter,
+} from 'react-icons/fa';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    'idle' | 'success' | 'error'
+  >('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -50,11 +61,13 @@ export default function ContactPage() {
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       });
     } catch (error) {
       console.error('Error:', error);
-      setErrorMessage(error instanceof Error ? error.message : 'Error al enviar el mensaje');
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Error al enviar el mensaje'
+      );
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -66,20 +79,20 @@ export default function ContactPage() {
       name: 'GitHub',
       icon: FaGithub,
       url: 'https://github.com/Rene-Kuhm',
-      color: 'hover:text-gray-100'
+      color: 'hover:text-[#00FF7F]',
     },
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
       url: 'https://www.linkedin.com/in/ren%C3%A9-kuhm-1aa88818a/',
-      color: 'hover:text-blue-500'
+      color: 'hover:text-[#00FF7F]',
     },
     {
       name: 'Twitter',
       icon: FaTwitter,
       url: 'https://x.com/REPARO22',
-      color: 'hover:text-blue-400'
-    }
+      color: 'hover:text-blue-400',
+    },
   ];
 
   const contactInfo = [
@@ -87,35 +100,34 @@ export default function ContactPage() {
       icon: FaEnvelope,
       label: 'Email',
       value: 'renekuhm2@gmail.com',
-      link: 'mailto:renekuhm2@gmail.com'
+      link: 'mailto:renekuhm2@gmail.com',
     },
     {
       icon: FaMapMarkerAlt,
       label: 'Ubicación',
-      value: 'Eduardo Castex (LP), Argentina'
+      value: 'Eduardo Castex (LP), Argentina',
     },
     {
       icon: FaPhone,
       label: 'Teléfono',
       value: '+54 9 2334-409838',
-      link: 'tel:+5492334409838'
-    }
+      link: 'tel:+5492334409838',
+    },
   ];
 
   return (
     <main className="min-h-screen bg-black pt-20">
       {/* Background Effects */}
       <div className="fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black"></div>
-        <div 
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF7F]/10 via-black to-black" />
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `linear-gradient(#00FF7F 1px, transparent 1px),
-              linear-gradient(to right, #00FF7F 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            mask: 'radial-gradient(circle at center, transparent 0%, black 100%)'
+            backgroundImage: 'url("/grid.svg")',
+            backgroundSize: '30px',
+            backgroundRepeat: 'repeat',
           }}
-        ></div>
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -131,8 +143,8 @@ export default function ContactPage() {
               Contacto
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              ¿Tienes un proyecto en mente? ¡Me encantaría escucharlo! Contáctame y trabajemos juntos
-              para hacer realidad tus ideas.
+              ¿Tienes un proyecto en mente? ¡Me encantaría escucharlo!
+              Contáctame y trabajemos juntos para hacer realidad tus ideas.
             </p>
           </motion.div>
 
@@ -149,10 +161,13 @@ export default function ContactPage() {
                   Información de Contacto
                 </h2>
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => {
+                  {contactInfo.map((info) => {
                     const Icon = info.icon;
                     return (
-                      <div key={index} className="flex items-start space-x-4">
+                      <div
+                        key={info.label}
+                        className="flex items-start space-x-4"
+                      >
                         <div className="p-3 bg-[#00FF7F]/10 rounded-lg">
                           <Icon className="w-6 h-6 text-[#00FF7F]" />
                         </div>
@@ -180,11 +195,11 @@ export default function ContactPage() {
                     Sígueme en las redes
                   </h3>
                   <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => {
+                    {socialLinks.map((social) => {
                       const Icon = social.icon;
                       return (
                         <a
-                          key={index}
+                          key={social.url}
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -299,7 +314,8 @@ export default function ContactPage() {
                     animate={{ opacity: 1 }}
                     className="text-red-500 mt-4"
                   >
-                    {errorMessage || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.'}
+                    {errorMessage ||
+                      'Error al enviar el mensaje. Por favor, inténtalo de nuevo.'}
                   </motion.p>
                 )}
               </form>
