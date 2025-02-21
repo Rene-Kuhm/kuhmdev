@@ -1,4 +1,5 @@
 const path = require('path');
+const { resolve } = require('path');
 
 module.exports = {
   entry: './app/page.tsx',
@@ -108,6 +109,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, './app'),
+      '@emotion/is-prop-valid': resolve(__dirname, 'node_modules/@emotion/is-prop-valid')
     },
   },
   optimization: {

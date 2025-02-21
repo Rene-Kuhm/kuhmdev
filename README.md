@@ -10,7 +10,7 @@ A modern, responsive personal portfolio website built with Next.js, React, TypeS
 - Contact form with email integration
 - SEO optimized
 - Dark mode support
-- Server-side rendering with Next.js
+- Static site generation with Next.js
 - TypeScript for type safety
 - Tailwind CSS for styling
 - Professional animations and transitions
@@ -127,7 +127,7 @@ The contact form is integrated with multiple email service providers:
 
 ## 📱 Performance Optimizations
 
-- Server-side rendering for better SEO
+- Static site generation for better SEO and performance
 - Image optimization with Next.js Image component
 - Code splitting and lazy loading
 - Bundle optimization with Rspack
