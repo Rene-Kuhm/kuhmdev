@@ -6,6 +6,8 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
+// @ts-check
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable static exports
@@ -22,11 +24,33 @@ const nextConfig = {
   // Enhanced experimental features for better performance
   experimental: {
     optimizeCss: true, // Enable CSS optimization
-    optimizePackageImports: ['react-icons', '@heroicons/react'], // Optimize package imports
+    optimizePackageImports: [
+      'react-icons',
+      '@heroicons/react',
+      'lodash',
+      '@emotion/react',
+      'framer-motion'
+    ], // Optimize package imports
     webpackBuildWorker: true, // Enable webpack build worker
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
+    turbotrace: {
+      contextDirectory: __dirname,
+      logLevel: 'error'
+    },
+    ppr: true,
     turbo: {
       resolveAlias: {
         underscore: 'lodash',
+      },
+    },
+    modularizeImports: {
+      'react-icons/(?!\/lib)(.*)': {
+        transform: 'react-icons/$1/{{member}}',
+        skipDefaultConversion: true,
+      },
+      '@heroicons/react/(.*)': {
+        transform: '@heroicons/react/$1/{{member}}',
+        skipDefaultConversion: true,
       },
     },
   },
@@ -42,6 +66,7 @@ const nextConfig = {
   // Optimize build settings
   poweredByHeader: false,
   compress: true,
+  productionBrowserSourceMaps: false,
 
   // Webpack configuration for better code splitting
   webpack: (config, { dev, isServer }) => {
@@ -50,36 +75,34 @@ const nextConfig = {
       config.optimization = {
         ...config.optimization,
         moduleIds: 'deterministic',
-        runtimeChunk: {
-          name: 'runtime',
-        },
+        chunkIds: 'deterministic',
+        mangleExports: true,
+        concatenateModules: true,
+        mergeDuplicateChunks: true,
+        removeEmptyChunks: true,
+        runtimeChunk: 'single',
         splitChunks: {
           chunks: 'all',
-          minSize: 10000,
-          maxSize: 25000,
+          minSize: 8000,
+          maxSize: 20000,
           minChunks: 1,
-          maxAsyncRequests: 10,
-          maxInitialRequests: 10,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          enforceSizeThreshold: 50000,
           cacheGroups: {
+            default: false,
+            vendors: false,
             framework: {
               name: 'framework',
-              test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
+              test: /[\\/]node_modules[\\/](react|react-dom|next|framer-motion)[\\/]/,
               priority: 40,
               chunks: 'all',
               enforce: true,
             },
-            commons: {
-              name: 'commons',
-              test: /[\\/]node_modules[\\/]/,
-              priority: 30,
-              chunks: 'all',
-              minChunks: 2,
-              reuseExistingChunk: true,
-            },
             lib: {
               test(module) {
                 return (
-                  module.size() > 50000 &&
+                  module.size() > 40000 &&
                   /node_modules[/\\]/.test(module.identifier())
                 )
               },
@@ -88,14 +111,21 @@ const nextConfig = {
                 hash.update(module.identifier())
                 return 'lib-' + hash.digest('hex').substring(0, 8)
               },
-              priority: 20,
+              priority: 30,
               minChunks: 1,
+              reuseExistingChunk: true,
+            },
+            commons: {
+              name: 'commons',
+              minChunks: 2,
+              priority: 20,
               reuseExistingChunk: true,
             },
           },
         },
       }
     }
+
     return config
   },
 }

@@ -1,43 +1,34 @@
 'use client';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, memo } from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 
-// Dynamically import icons individually
-const FaCode = dynamic(() => import('react-icons/fa').then(mod => mod.FaCode), { ssr: false });
-const FaPaintBrush = dynamic(() => import('react-icons/fa').then(mod => mod.FaPaintBrush), { ssr: false });
-const FaServer = dynamic(() => import('react-icons/fa').then(mod => mod.FaServer), { ssr: false });
-const FaDatabase = dynamic(() => import('react-icons/fa').then(mod => mod.FaDatabase), { ssr: false });
-const FaCloud = dynamic(() => import('react-icons/fa').then(mod => mod.FaCloud), { ssr: false });
-const FaRobot = dynamic(() => import('react-icons/fa').then(mod => mod.FaRobot), { ssr: false });
-
+// Dynamically import icons with loading optimization
 const Icons = {
-  FaCode,
-  FaPaintBrush,
-  FaServer,
-  FaDatabase,
-  FaCloud,
-  FaRobot
+  FaCode: dynamic(() => import('react-icons/fa').then(mod => mod.FaCode), { ssr: false }),
+  FaPaintBrush: dynamic(() => import('react-icons/fa').then(mod => mod.FaPaintBrush), { ssr: false }),
+  FaServer: dynamic(() => import('react-icons/fa').then(mod => mod.FaServer), { ssr: false }),
+  FaDatabase: dynamic(() => import('react-icons/fa').then(mod => mod.FaDatabase), { ssr: false }),
+  FaCloud: dynamic(() => import('react-icons/fa').then(mod => mod.FaCloud), { ssr: false }),
+  FaRobot: dynamic(() => import('react-icons/fa').then(mod => mod.FaRobot), { ssr: false })
 };
 
-// Separate CodeBackground into its own component with memoization
-const CodeBackground = dynamic(() => Promise.resolve(({ language }: { language: string }) => {
+// Memoize the code background component
+const CodeBackground = memo(({ language }: { language: string }) => {
   const [text, setText] = useState('');
   
   useEffect(() => {
     const codeSnippets = {
-      javascript: `function develop() {
-  const stack = ['React', 'Node'];
-  return stack.map(tech => 
-    buildAwesome(tech));
-}`,
-      python: `def analyze_data():
-    import pandas as pd
-    data = process_input()
+      javascript: `// Optimized code sample
+const stack = ['React', 'Node'];
+stack.map(buildAwesome);`,
+      python: `# Minimal sample
+def analyze():
     return ml_model.predict(data)`,
-      java: `public class Solution {
-    public static void main() {
-        System.out.println("Hello");
+      java: `class Solution {
+    void main() {
+        System.out.print("Hi");
     }
 }`
     };
@@ -75,67 +66,54 @@ const CodeBackground = dynamic(() => Promise.resolve(({ language }: { language: 
       </pre>
     </div>
   );
-}), { ssr: false });
+});
 
-// Service data moved outside component to prevent recreations
+CodeBackground.displayName = 'CodeBackground';
+
+// Move services data outside component
 const services = [
   {
     title: 'Desarrollo Web Full Stack',
-    description: 'Creo aplicaciones web modernas y escalables utilizando las últimas tecnologías como React, Next.js, Node.js y TypeScript.',
+    description: 'Creo aplicaciones web modernas y escalables utilizando las últimas tecnologías.',
     iconName: 'FaCode',
     language: 'javascript',
-    features: [
-      'Aplicaciones web responsivas',
-      'APIs RESTful y GraphQL',
-      'Bases de datos SQL y NoSQL',
-      'Integración de servicios en la nube',
-    ],
+    features: ['Aplicaciones web responsivas', 'APIs RESTful', 'Bases de datos', 'Optimización']
   },
   {
     title: 'Desarrollo Frontend',
-    description: 'Diseño y desarrollo interfaces de usuario intuitivas y atractivas con un enfoque en la experiencia del usuario.',
+    description: 'Diseño y desarrollo interfaces de usuario intuitivas y atractivas.',
     iconName: 'FaPaintBrush',
     language: 'javascript',
-    features: [
-      'Diseño UI/UX moderno',
-      'Animaciones fluidas',
-      'Optimización de rendimiento',
-      'Accesibilidad web',
-    ],
+    features: ['UI/UX moderno', 'Animaciones', 'Optimización', 'Accesibilidad']
   },
   {
     title: 'Desarrollo Backend',
-    description: 'Implemento arquitecturas robustas y seguras para potenciar tus aplicaciones con un rendimiento óptimo.',
+    description: 'Implemento arquitecturas robustas y seguras para tus aplicaciones.',
     iconName: 'FaServer',
     language: 'python',
-    features: [
-      'Arquitectura de microservicios',
-      'Seguridad y autenticación',
-      'Optimización de bases de datos',
-      'Escalabilidad y mantenimiento',
-    ],
+    features: ['Microservicios', 'Seguridad', 'Optimización DB', 'Escalabilidad']
   },
   {
     title: 'Database Solutions',
-    description: 'Efficient database design and implementation for optimal data management.',
+    description: 'Diseño e implementación eficiente de bases de datos.',
     iconName: 'FaDatabase',
     language: 'python',
-    features: ['SQL/NoSQL', 'Data Modeling', 'Optimization'],
+    features: ['SQL/NoSQL', 'Modelado', 'Optimización']
   },
   {
     title: 'Cloud Services',
-    description: 'Cloud infrastructure setup and management with AWS, Azure, or GCP.',
+    description: 'Configuración y gestión de infraestructura en la nube.',
     iconName: 'FaCloud',
     language: 'javascript',
-    features: ['AWS/Azure/GCP', 'Serverless', 'DevOps'],
+    features: ['AWS/Azure/GCP', 'Serverless', 'DevOps']
   },
   {
     title: 'AI & Machine Learning',
-    description: 'Intelligent solutions using cutting-edge AI and ML technologies.',
+    description: 'Soluciones inteligentes con tecnologías AI y ML.',
     iconName: 'FaRobot',
     language: 'python',
-    features: ['Neural Networks', 'Data Analysis', 'Automation'],
-  },
+    features: ['Neural Networks', 'Data Analysis', 'Automation']
+  }
 ] as const;
 
 const Services = () => {
@@ -182,46 +160,45 @@ const Services = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="relative group"
-            >
-              <div className="relative bg-black/50 backdrop-blur-sm border border-[#00FF7F]/20 p-6 rounded-lg overflow-hidden group-hover:border-[#00FF7F]/40 transition-all duration-300">
-                <CodeBackground language={service.language} />
-                <div className="relative z-10">
-                  <div className="text-[#00FF7F] mb-4 text-3xl">
-                    {/* Render the icon component directly */}
-                    {(() => {
-                      const IconComponent = Icons[service.iconName as keyof typeof Icons];
-                      return IconComponent ? <IconComponent /> : null;
-                    })()}
+          {services.map((service) => {
+            const IconComponent = Icons[service.iconName as keyof typeof Icons];
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="relative group"
+              >
+                <div className="relative bg-black/50 backdrop-blur-sm border border-[#00FF7F]/20 p-6 rounded-lg overflow-hidden group-hover:border-[#00FF7F]/40 transition-all duration-300">
+                  <CodeBackground language={service.language} />
+                  <div className="relative z-10">
+                    <div className="text-[#00FF7F] mb-4 text-3xl">
+                      {IconComponent && <IconComponent />}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF7F] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400 mb-4">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="text-gray-400 flex items-center">
+                          <span className="text-[#00FF7F] mr-2">•</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF7F] transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="text-gray-400 flex items-center">
-                        <span className="text-[#00FF7F] mr-2">•</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="absolute -inset-1 bg-[#00FF7F]/20 blur-lg group-hover:bg-[#00FF7F]/30 transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                  <div className="absolute -inset-px bg-gradient-to-r from-[#00FF7F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg" />
                 </div>
-                <div className="absolute -inset-1 bg-[#00FF7F]/20 blur-lg group-hover:bg-[#00FF7F]/30 transition-all duration-300 opacity-0 group-hover:opacity-100" />
-                <div className="absolute -inset-px bg-gradient-to-r from-[#00FF7F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg" />
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-export default Services;
+export default memo(Services);

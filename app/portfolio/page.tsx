@@ -1,9 +1,16 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
+// Route segment config for static optimization
+export const dynamicConfig = 'force-static';
+export const revalidate = 86400; // Revalidate daily
+export const fetchCache = 'force-cache';
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
 
 interface Project {
   id: number;

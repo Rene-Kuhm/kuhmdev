@@ -3,20 +3,23 @@ import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import './globals.css';
 
-// Dynamically import components that aren't needed for initial paint
-const Footer = dynamic(() => import('./components/Footer'), {
-  ssr: true,
-});
-
-const Navbar = dynamic(() => import('./components/Navbar'), {
-  ssr: true,
-});
-
 // Optimize font loading
 const inter = Inter({ 
   subsets: ['latin'],
   display: 'swap',
   preload: true,
+  fallback: ['system-ui', 'sans-serif']
+});
+
+// Dynamically import components with loading optimization
+const Footer = dynamic(() => import('./components/Footer'), {
+  ssr: true,
+  loading: () => <footer className="bg-black py-12" />
+});
+
+const Navbar = dynamic(() => import('./components/Navbar'), {
+  ssr: true,
+  loading: () => <nav className="fixed top-0 w-full h-16 bg-black/80 backdrop-blur-sm z-50" />
 });
 
 export const metadata: Metadata = {
@@ -35,36 +38,9 @@ export const metadata: Metadata = {
     'typescript',
     'software',
   ],
-  authors: [{ name: 'René Kuhm', url: 'https://renekuhm.dev' }],
-  alternates: {
-    canonical: 'https://renekuhm.dev',
-    languages: {
-      'es-CL': 'https://renekuhm.dev',
-      'en-US': 'https://renekuhm.dev/en',
-    },
-  },
-  openGraph: {
-    title: 'René Kuhm | Desarrollador Web Full Stack',
-    description: 'Soluciones tecnológicas innovadoras.',
-    url: 'https://renekuhm.dev',
-    siteName: 'René Kuhm Portfolio',
-    images: [
-      {
-        url: '/images/profile.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'René Kuhm - Desarrollador Web Full Stack',
-      },
-    ],
-    locale: 'es_CL',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'René Kuhm | Desarrollador Web Full Stack',
-    description: 'Soluciones tecnológicas innovadoras.',
-    images: ['/images/profile.jpg'],
-  },
+  authors: [{ name: 'René Kuhm' }],
+  creator: 'René Kuhm',
+  publisher: 'René Kuhm',
   robots: {
     index: true,
     follow: true,
@@ -79,30 +55,23 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  themeColor: '#000000',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
-  themeColor: '#000000',
 };
 
+// Root layout with performance optimizations
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <head>
-        <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="canonical" href="https://renekuhm.dev" />
-        <link rel="alternate" hrefLang="es-CL" href="https://renekuhm.dev" />
-        <link rel="alternate" hrefLang="en-US" href="https://renekuhm.dev/en" />
-      </head>
-      <body className={`${inter.className} bg-gray-900 text-white`}>
+    <html lang="es" className={inter.className}>
+      <body className="bg-black text-white">
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import dynamicNext from 'next/dynamic';
 import {
   FaCloud,
   FaCode,
@@ -10,6 +11,13 @@ import {
   FaRobot,
   FaServer,
 } from 'react-icons/fa';
+
+// Route segment config for static optimization
+export const dynamic = 'force-static';
+export const revalidate = 86400; // Revalidate daily
+export const fetchCache = 'force-cache';
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
 
 export default function ServicesPage() {
   const services = [
