@@ -1,74 +1,20 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Script from 'next/script';
-
-// Dynamically import components with loading optimization
-const Hero = dynamic(() => import('./components/Hero'), {
-  ssr: true,
-  loading: () => <div className="min-h-screen bg-black" /> // Minimal loading state
-});
-
-const ClientStats = dynamic(() => import('./components/ClientStats'));
-
-const Services = dynamic(() => import('./components/Services'), {
-  ssr: true
-});
-
-const Projects = dynamic(() => import('./components/Projects'), {
-  ssr: true
-});
+import { Hero } from './components';
+import ClientWrapper from './components/ClientWrapper';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'René Kuhm | Desarrollador Web Full Stack',
-    template: '%s | René Kuhm',
-  },
-  description:
-    'Soluciones tecnológicas innovadoras. Desarrollador Web Full Stack especializado en Next.js, React, y TypeScript. Servicios de desarrollo web, consultoría y proyectos personalizados.',
-  keywords: [
-    'desarrollador web',
-    'full stack',
-    'next.js',
-    'react',
-    'typescript',
-    'frontend',
-    'backend',
-    'desarrollo de software',
-  ],
-  openGraph: {
-    title: 'René Kuhm - Desarrollador Web Full Stack',
-    description:
-      'Soluciones tecnológicas innovadoras. Desarrollador Web Full Stack especializado en Next.js, React, y TypeScript.',
-    url: 'https://renekuhm.dev',
-    type: 'website',
-    images: [
-      {
-        url: '/images/profile.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'René Kuhm - Desarrollador Web Full Stack',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'René Kuhm | Desarrollador Web Full Stack',
-    description:
-      'Soluciones tecnológicas innovadoras. Desarrollador Web Full Stack especializado en Next.js, React, y TypeScript.',
-    images: ['/images/profile.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  title: 'kuhm.dev - Desarrollo Web Profesional',
+  description: 'Transformando ideas en soluciones digitales innovadoras',
+  alternates: {
+    canonical: '/'
+  }
 };
+
+export const dynamic = 'force-static';
+export const revalidate = false;
+export const fetchCache = 'force-cache';
+export const preferredRegion = 'auto';
 
 export default function Home() {
   const jsonLd = {
@@ -124,9 +70,7 @@ export default function Home() {
       />
       <main className="bg-black">
         <Hero />
-        <ClientStats />
-        <Services />
-        <Projects />
+        <ClientWrapper />
       </main>
     </>
   );

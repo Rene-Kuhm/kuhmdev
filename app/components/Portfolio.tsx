@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
+'use client';
 
-const FaGithub = dynamic(() => import('react-icons/fa').then(mod => mod.FaGithub), { ssr: false });
+import { FaGithub } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface Project {
   title: string;
