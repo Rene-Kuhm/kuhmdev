@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-export const dynamic = 'force-dynamic';
-
 export async function POST(req: Request) {
   try {
     // Validate that the request body can be parsed as JSON
