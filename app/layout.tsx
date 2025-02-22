@@ -41,6 +41,15 @@ export const metadata: Metadata = {
   authors: [{ name: 'René Kuhm' }],
   creator: 'René Kuhm',
   publisher: 'René Kuhm',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/favicon.svg',
+    },
+  },
   robots: {
     index: true,
     follow: true,
@@ -70,6 +79,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.className}>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </head>
       <body className="bg-black text-white">
         <Navbar />
         <main>{children}</main>
