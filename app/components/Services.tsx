@@ -116,7 +116,7 @@ const services = [
   }
 ] as const;
 
-const Services = () => {
+export default function ServicesContent() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -199,6 +199,4 @@ const Services = () => {
       </div>
     </section>
   );
-};
-
-export default memo(Services);
+}

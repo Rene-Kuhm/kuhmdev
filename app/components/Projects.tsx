@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState, memo } from 'react';
 import dynamic from 'next/dynamic';
@@ -45,7 +46,7 @@ const projects: Project[] = [
 ];
 
 // Memoize the project card component
-const ProjectCard = memo(({ project, variants }: { project: Project; variants: any }) => (
+const ProjectCard = memo(({ project, variants }: { project: Project; variants: Variants }) => (
   <motion.div
     key={project.id}
     variants={variants}

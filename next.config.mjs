@@ -1,6 +1,10 @@
 import { withContentlayer } from 'next-contentlayer'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import crypto from 'crypto'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -31,28 +35,7 @@ const nextConfig = {
       '@emotion/react',
       'framer-motion'
     ], // Optimize package imports
-    webpackBuildWorker: true, // Enable webpack build worker
-    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
-    turbotrace: {
-      contextDirectory: __dirname,
-      logLevel: 'error'
-    },
-    ppr: true,
-    turbo: {
-      resolveAlias: {
-        underscore: 'lodash',
-      },
-    },
-    modularizeImports: {
-      'react-icons/(?!\/lib)(.*)': {
-        transform: 'react-icons/$1/{{member}}',
-        skipDefaultConversion: true,
-      },
-      '@heroicons/react/(.*)': {
-        transform: '@heroicons/react/$1/{{member}}',
-        skipDefaultConversion: true,
-      },
-    },
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB']
   },
 
   // Enhanced compiler options
