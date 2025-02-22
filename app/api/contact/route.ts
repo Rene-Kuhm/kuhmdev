@@ -3,18 +3,32 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    const { name, email, subject, message } = await req.json();
+    // Validate that the request body can be parsed as JSON
+    let body;
+    try {
+      body = await req.json();
+    } catch (e) {
+      return NextResponse.json(
+        { error: 'Invalid JSON payload' },
+        { status: 400 }
+      );
+    }
+
+    const { name, email, subject, message } = body;
 
     // Validate input
     if (!name || !email || !subject || !message) {
-      console.error('Missing required fields:', {
-        name,
-        email,
-        subject,
-        message,
-      });
       return NextResponse.json(
         { error: 'Todos los campos son requeridos' },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Formato de email inválido' },
         { status: 400 }
       );
     }
@@ -46,20 +60,25 @@ export async function POST(req: Request) {
       replyTo: email,
     };
 
-    console.log('Attempting to send email...');
-
-    // Send email
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info.messageId);
-
-    return NextResponse.json(
-      { message: 'Mensaje enviado con éxito' },
-      { status: 200 }
-    );
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully:', info.messageId);
+      return NextResponse.json(
+        { message: 'Mensaje enviado con éxito' },
+        { status: 200 }
+      );
+    } catch (error) {
+      console.error('Error sending email:', error);
+      return NextResponse.json(
+        { error: 'Error al enviar el email. Por favor, inténtalo más tarde.' },
+        { status: 500 }
+      );
+    }
   } catch (error) {
-    console.error('Error sending email:', error);
-    const errorMessage =
-      error instanceof Error ? error.message : 'Error al enviar el mensaje';
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    console.error('Unexpected error:', error);
+    return NextResponse.json(
+      { error: 'Error inesperado. Por favor, inténtalo más tarde.' },
+      { status: 500 }
+    );
   }
 }
