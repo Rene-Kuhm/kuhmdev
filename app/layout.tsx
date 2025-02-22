@@ -23,7 +23,7 @@ const Navbar = dynamic(() => import('./components/Navbar'), {
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://renekuhm.dev'),
+  metadataBase: new URL('https://kuhmdev.com.ar'),
   title: {
     default: 'René Kuhm | Desarrollador Web Full Stack',
     template: '%s | René Kuhm',
