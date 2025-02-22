@@ -15,7 +15,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable static exports
-  output: 'export',
+  //output: 'export',
   
   // Optimize image handling
   images: {
