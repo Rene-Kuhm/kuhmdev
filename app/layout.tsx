@@ -1,10 +1,23 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import dynamic from 'next/dynamic';
 import './globals.css';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
+// Dynamically import components that aren't needed for initial paint
+const Footer = dynamic(() => import('./components/Footer'), {
+  ssr: true,
+});
+
+const Navbar = dynamic(() => import('./components/Navbar'), {
+  ssr: true,
+});
+
+// Optimize font loading
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://renekuhm.dev'),
@@ -70,6 +83,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: '#000000',
 };
 
 export default function RootLayout({
@@ -80,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="canonical" href="https://renekuhm.dev" />
         <link rel="alternate" hrefLang="es-CL" href="https://renekuhm.dev" />
@@ -88,7 +102,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-gray-900 text-white`}>
         <Navbar />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>

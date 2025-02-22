@@ -1,3 +1,10 @@
+import { withContentlayer } from 'next-contentlayer'
+import bundleAnalyzer from '@next/bundle-analyzer'
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable static exports
@@ -11,14 +18,24 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
 
-  // Enable experimental features for better performance
+  // Enhanced experimental features for better performance
   experimental: {
     optimizeCss: true, // Enable CSS optimization
     bundlePagesRouterDependencies: true,
-    optimizePackageImports: ['framer-motion'],
+    optimizePackageImports: [
+      'framer-motion',
+      'react-icons',
+      'react-countup',
+      '@emotion/is-prop-valid'
+    ],
+    modularizeImports: {
+      'react-icons/?(((\\w*)?/?)*)': {
+        transform: 'react-icons/{{ matches.[1] }}/{{member}}',
+      },
+    },
   },
 
-  // Configure compiler options for better performance
+  // Enhanced compiler options
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
@@ -29,6 +46,34 @@ const nextConfig = {
   // Optimize build settings
   poweredByHeader: false,
   compress: true,
-};
 
-export default nextConfig;
+  // Webpack configuration for better code splitting
+  webpack: (config, { isServer }) => {
+    // Optimize client-side bundles
+    if (!isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 40000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 25,
+        cacheGroups: {
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
+      }
+    }
+    return config
+  },
+}
+
+export default withBundleAnalyzer(nextConfig)

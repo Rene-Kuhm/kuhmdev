@@ -1,6 +1,24 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import { Hero, Projects, Services, Stats } from './components';
+
+// Dynamically import components with loading optimization
+const Hero = dynamic(() => import('./components/Hero'), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-black" /> // Minimal loading state
+});
+
+const Stats = dynamic(() => import('./components/Stats'), {
+  ssr: false // Stats can be loaded client-side for better initial page load
+});
+
+const Services = dynamic(() => import('./components/Services'), {
+  ssr: true
+});
+
+const Projects = dynamic(() => import('./components/Projects'), {
+  ssr: true
+});
 
 export const metadata: Metadata = {
   title: {
@@ -92,6 +110,7 @@ export default function Home() {
       <Script
         id="json-ld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/[<>'"&]/g, (char) => {
             const entities: { [key: string]: string } = {
