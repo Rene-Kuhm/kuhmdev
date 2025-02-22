@@ -81,6 +81,7 @@ export default function RootLayout({
     <html lang="es" className={inter.className}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="google-site-verification" content="6HE57J3LrIp5-6EbgJpcpnRjsWYVlGuZnY3mCYd9RWs" />
       </head>
       <body className="bg-black text-white">
         <Navbar />
