@@ -1,6 +1,3 @@
-export const dynamic = "force-static";
-export const revalidate = 60;
-
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
