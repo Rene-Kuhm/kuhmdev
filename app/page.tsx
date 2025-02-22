@@ -8,9 +8,7 @@ const Hero = dynamic(() => import('./components/Hero'), {
   loading: () => <div className="min-h-screen bg-black" /> // Minimal loading state
 });
 
-const Stats = dynamic(() => import('./components/Stats'), {
-  ssr: false // Stats can be loaded client-side for better initial page load
-});
+const ClientStats = dynamic(() => import('./components/ClientStats'));
 
 const Services = dynamic(() => import('./components/Services'), {
   ssr: true
@@ -126,7 +124,7 @@ export default function Home() {
       />
       <main className="bg-black">
         <Hero />
-        <Stats />
+        <ClientStats />
         <Services />
         <Projects />
       </main>

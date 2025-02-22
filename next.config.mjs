@@ -21,18 +21,6 @@ const nextConfig = {
   // Enhanced experimental features for better performance
   experimental: {
     optimizeCss: true, // Enable CSS optimization
-    bundlePagesRouterDependencies: true,
-    optimizePackageImports: [
-      'framer-motion',
-      'react-icons',
-      'react-countup',
-      '@emotion/is-prop-valid'
-    ],
-    modularizeImports: {
-      'react-icons/?(((\\w*)?/?)*)': {
-        transform: 'react-icons/{{ matches.[1] }}/{{member}}',
-      },
-    },
   },
 
   // Enhanced compiler options
@@ -76,4 +64,5 @@ const nextConfig = {
   },
 }
 
-export default withBundleAnalyzer(nextConfig)
+// Apply both HOCs
+export default withContentlayer(withBundleAnalyzer(nextConfig))

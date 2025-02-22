@@ -3,7 +3,16 @@ import Image from 'next/image';
 
 const FaGithub = dynamic(() => import('react-icons/fa').then(mod => mod.FaGithub), { ssr: false });
 
-const projects = [
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  github?: string;
+}
+
+const projects: Project[] = [
   {
     title: 'Systema Reclamos',
     category: 'Web Development',
@@ -29,9 +38,9 @@ const projects = [
     image: '/portfolio3.jpg',
     technologies: ['Coming Soon'],
   },
-] as const;
+];
 
-const ProjectCard = ({ project }: { project: typeof projects[number] }) => (
+const ProjectCard = ({ project }: { project: Project }) => (
   <div className="group relative overflow-hidden rounded-lg bg-zinc-900/50 backdrop-blur-sm border border-zinc-800">
     <div className="relative h-48 w-full">
       <Image
@@ -42,7 +51,7 @@ const ProjectCard = ({ project }: { project: typeof projects[number] }) => (
         loading="lazy"
       />
     </div>
-    <div className="p-6"></div>
+    <div className="p-6">
       <h3 className="text-xl font-semibold text-white mb-2">
         {project.title}
       </h3>

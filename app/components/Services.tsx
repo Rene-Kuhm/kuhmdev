@@ -3,18 +3,22 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Dynamically import heavy icons
-const Icons = dynamic(() => import('react-icons/fa').then(mod => ({
-  FaCode: mod.FaCode,
-  FaPaintBrush: mod.FaPaintBrush,
-  FaServer: mod.FaServer,
-  FaDatabase: mod.FaDatabase,
-  FaCloud: mod.FaCloud,
-  FaRobot: mod.FaRobot
-})), {
-  ssr: false,
-  loading: () => <div className="w-8 h-8" />
-});
+// Dynamically import icons individually
+const FaCode = dynamic(() => import('react-icons/fa').then(mod => mod.FaCode), { ssr: false });
+const FaPaintBrush = dynamic(() => import('react-icons/fa').then(mod => mod.FaPaintBrush), { ssr: false });
+const FaServer = dynamic(() => import('react-icons/fa').then(mod => mod.FaServer), { ssr: false });
+const FaDatabase = dynamic(() => import('react-icons/fa').then(mod => mod.FaDatabase), { ssr: false });
+const FaCloud = dynamic(() => import('react-icons/fa').then(mod => mod.FaCloud), { ssr: false });
+const FaRobot = dynamic(() => import('react-icons/fa').then(mod => mod.FaRobot), { ssr: false });
+
+const Icons = {
+  FaCode,
+  FaPaintBrush,
+  FaServer,
+  FaDatabase,
+  FaCloud,
+  FaRobot
+};
 
 // Separate CodeBackground into its own component with memoization
 const CodeBackground = dynamic(() => Promise.resolve(({ language }: { language: string }) => {
@@ -190,7 +194,11 @@ const Services = () => {
                 <CodeBackground language={service.language} />
                 <div className="relative z-10">
                   <div className="text-[#00FF7F] mb-4 text-3xl">
-                    {Icons && Icons[service.iconName as keyof typeof Icons]}
+                    {/* Render the icon component directly */}
+                    {(() => {
+                      const IconComponent = Icons[service.iconName as keyof typeof Icons];
+                      return IconComponent ? <IconComponent /> : null;
+                    })()}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF7F] transition-colors">
                     {service.title}
