@@ -121,8 +121,9 @@ const Footer = () => {
         whileHover={{ y: -5 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        aria-label="Volver al inicio de la página"
       >
-        <FaArrowUp size={20} />
+        <FaArrowUp size={20} aria-hidden="true" />
       </motion.button>
 
       <div className="container mx-auto px-4 relative z-10">

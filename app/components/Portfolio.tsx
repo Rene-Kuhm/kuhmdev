@@ -76,8 +76,9 @@ const ProjectCard = ({ project }: { project: Project }) => (
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-[#00FF7F] transition-colors"
+            aria-label={`Ver código fuente del proyecto ${project.title} en GitHub`}
           >
-            <FaGithub size={24} />
+            <FaGithub size={24} aria-hidden="true" />
           </a>
         </div>
       )}
